@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import shortid from 'shortid';
 
+import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
@@ -42,7 +43,7 @@ function App() {
   );
 
   return (
-    <>
+    <Container>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <h2>Contacts</h2>
@@ -51,7 +52,7 @@ function App() {
         contacts={filteredContacts}
         onDeleteContact={deleteContact}
       />
-    </>
+    </Container>
   );
 }
 
