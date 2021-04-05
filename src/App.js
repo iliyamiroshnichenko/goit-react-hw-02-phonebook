@@ -18,7 +18,10 @@ function App() {
   const [filter, setFilter] = useState('');
 
   const addContact = (name, number) => {
-    if (contacts.find(contact => contact.name === name)) {
+    const normalizedName = name.toLowerCase();
+    if (
+      contacts.find(contact => contact.name.toLowerCase() === normalizedName)
+    ) {
       alert(`${name} is already in contacts`);
       return;
     }
