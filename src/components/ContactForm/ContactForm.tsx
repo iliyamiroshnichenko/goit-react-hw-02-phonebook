@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 const initialState = {
@@ -7,16 +7,20 @@ const initialState = {
   number: '',
 };
 
-const ContactForm = ({ onSubmit }) => {
+interface IProps {
+  onSubmit: (name: string, number: string) => void;
+}
+
+const ContactForm = ({ onSubmit }: IProps) => {
   const [inputValue, setInputValue] = useState(initialState);
   const { name, number } = inputValue;
 
-  const changeInput = e => {
+  const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(name, number);
     setInputValue(initialState);
@@ -55,8 +59,8 @@ const ContactForm = ({ onSubmit }) => {
   );
 };
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// ContactForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };
 
 export default ContactForm;

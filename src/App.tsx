@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import shortid from 'shortid';
-
 import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
@@ -17,7 +16,7 @@ function App() {
   const [contacts, setContacts] = useState(initialContacts);
   const [filter, setFilter] = useState('');
 
-  const addContact = (name, number) => {
+  const addContact = (name: string, number: string) => {
     const normalizedName = name.toLowerCase();
     if (
       contacts.find(contact => contact.name.toLowerCase() === normalizedName)
@@ -33,11 +32,11 @@ function App() {
     setContacts(prState => [newContact, ...prState]);
   };
 
-  const changeFilter = e => {
+  const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.currentTarget.value);
   };
 
-  const deleteContact = contactId =>
+  const deleteContact = (contactId: string) =>
     setContacts(prState => prState.filter(({ id }) => id !== contactId));
 
   const normalizedFilter = filter.toLowerCase();
